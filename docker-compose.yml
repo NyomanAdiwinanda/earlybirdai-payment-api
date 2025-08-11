@@ -1,0 +1,46 @@
+version: '3.8'
+services:
+  dev-db:
+    image: postgres:15
+    container_name: earlybirdai-dev-db
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: earlybirddb
+    ports:
+      - '5432:5432'
+    volumes:
+      - dev-db-data:/var/lib/postgresql/data
+    networks:
+      - app-network
+
+  app:
+    build: .
+    container_name: earlybirdai-payment-api
+    restart: unless-stopped
+    ports:
+      - '3000:3000'
+    environment:
+      DATABASE_URL: ${DATABASE_URL}
+      STRIPE_API_KEY: ${STRIPE_API_KEY}
+      JWT_SECRET: ${JWT_SECRET}
+      OPEN_EXCHANGE_APP_ID: ${OPEN_EXCHANGE_APP_ID}
+      GOOGLE_CLIENT_ID: ${GOOGLE_CLIENT_ID}
+      GOOGLE_CLIENT_SECRET: ${GOOGLE_CLIENT_SECRET}
+      GOOGLE_CALLBACK_URL: ${GOOGLE_CALLBACK_URL}
+    depends_on:
+      - dev-db
+    volumes:
+      - .:/app
+      - /app/node_modules
+    networks:
+      - app-network
+
+volumes:
+  dev-db-data:
+    driver: local
+
+networks:
+  app-network:
+    driver: bridge

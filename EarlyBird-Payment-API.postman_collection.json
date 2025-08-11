@@ -1,0 +1,855 @@
+{
+	"info": {
+		"_postman_id": "f9e193e3-2b30-43ed-80b2-5bc127f34a62",
+		"name": "EarlyBird Payment API",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "23661537"
+	},
+	"item": [
+		{
+			"name": "Authentication",
+			"item": [
+				{
+					"name": "1. Google OAuth Login (Browser)",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/auth/google",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"auth",
+								"google"
+							]
+						},
+						"description": "Visit this URL in your browser to start Google OAuth flow. Copy the access_token from the response."
+					},
+					"response": []
+				},
+				{
+					"name": "2. Get User Profile",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{access_token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/auth/profile",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"auth",
+								"profile"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Example Response",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer {{access_token}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{base_url}}/auth/profile",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"auth",
+										"profile"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": null,
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "257"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"101-NagdlHCG8GMfyeBjv0kaNAygxLs\""
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 11 Aug 2025 05:37:45 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"User profile retrieved successfully\",\n    \"statusCode\": 200,\n    \"data\": {\n        \"id\": \"406d8f34-5056-4cd3-9858-3d3e907e8b52\",\n        \"name\": \"Nyoman Adiwinanda\",\n        \"email\": \"nyoman.adi16@gmail.com\",\n        \"createdAt\": \"2025-08-11T04:48:33.606Z\",\n        \"updatedAt\": \"2025-08-11T04:48:33.606Z\"\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "3. Logout",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{access_token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/auth/logout",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"auth",
+								"logout"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Payments",
+			"item": [
+				{
+					"name": "Get All Payments",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{access_token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/payments",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"payments"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Example Response",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer {{access_token}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{base_url}}/payments",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"payments"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": null,
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "2956"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"b8c-+SFgyULMpPJAbiNEATlm6ndEhLI\""
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 11 Aug 2025 05:42:30 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"Payments retrieved successfully\",\n    \"statusCode\": 200,\n    \"data\": [\n        {\n            \"id\": \"c109c590-d935-4b9f-b452-bdba89dba66e\",\n            \"transactionId\": \"int_aaaat9w2hgh8mzi5242\",\n            \"amount\": 16.66,\n            \"currency\": \"USD\",\n            \"status\": \"payment_failed\",\n            \"timestamp\": \"2025-08-11T02:16:04.000Z\",\n            \"source\": \"airwallex\",\n            \"customerEmail\": null,\n            \"createdAt\": \"2025-08-11T05:18:14.689Z\",\n            \"updatedAt\": \"2025-08-11T05:18:14.689Z\"\n        },\n        {\n            \"id\": \"4058f7de-f234-45b8-9578-8b6eaa72a802\",\n            \"transactionId\": \"int_aaaat9w2hgh8mzi1111\",\n            \"amount\": 821.66,\n            \"currency\": \"USD\",\n            \"status\": \"payment_successful\",\n            \"timestamp\": \"2025-08-11T01:16:04.000Z\",\n            \"source\": \"airwallex\",\n            \"customerEmail\": null,\n            \"createdAt\": \"2025-08-11T05:14:51.934Z\",\n            \"updatedAt\": \"2025-08-11T05:14:51.934Z\"\n        },\n        {\n            \"id\": \"7e5095e5-30f8-40b5-8287-5de94c08ec21\",\n            \"transactionId\": \"pi_3Ruo0lKFHFhupEwe1yyHLlxT\",\n            \"amount\": 1350,\n            \"currency\": \"AUD\",\n            \"status\": \"payment_successful\",\n            \"timestamp\": \"2025-08-11T05:11:27.000Z\",\n            \"source\": \"stripe\",\n            \"customerEmail\": \"customer_5@mail.com\",\n            \"createdAt\": \"2025-08-11T05:11:29.264Z\",\n            \"updatedAt\": \"2025-08-11T05:11:29.264Z\"\n        },\n        {\n            \"id\": \"faea26ec-496d-4694-bb2f-020895e5a491\",\n            \"transactionId\": \"pi_3RunyiKFHFhupEwe11Siwrh6\",\n            \"amount\": 750,\n            \"currency\": \"SGD\",\n            \"status\": \"payment_failed\",\n            \"timestamp\": \"2025-08-11T05:09:17.000Z\",\n            \"source\": \"stripe\",\n            \"customerEmail\": \"customer_1@mail.com\",\n            \"createdAt\": \"2025-08-11T05:09:19.245Z\",\n            \"updatedAt\": \"2025-08-11T05:09:19.245Z\"\n        },\n        {\n            \"id\": \"d8c42d38-4749-4afd-b526-2e45b9b9407d\",\n            \"transactionId\": \"pi_3RunxWKFHFhupEwe0UqmEzaN\",\n            \"amount\": 620,\n            \"currency\": \"USD\",\n            \"status\": \"payment_successful\",\n            \"timestamp\": \"2025-08-11T05:08:01.000Z\",\n            \"source\": \"stripe\",\n            \"customerEmail\": \"customer_2@mail.com\",\n            \"createdAt\": \"2025-08-11T05:08:03.391Z\",\n            \"updatedAt\": \"2025-08-11T05:08:03.391Z\"\n        },\n        {\n            \"id\": \"02629481-a584-43aa-bd2f-5bcdbf8f262a\",\n            \"transactionId\": \"pi_3RunurKFHFhupEwe0r3CcoOp\",\n            \"amount\": 1200,\n            \"currency\": \"EUR\",\n            \"status\": \"refund_processed\",\n            \"timestamp\": \"2025-08-11T05:06:08.000Z\",\n            \"source\": \"stripe\",\n            \"customerEmail\": \"customer_4@mail.com\",\n            \"createdAt\": \"2025-08-11T05:05:17.319Z\",\n            \"updatedAt\": \"2025-08-11T05:06:09.238Z\"\n        },\n        {\n            \"id\": \"3d03fa16-e423-42e1-ac1a-c3ae0d98ca08\",\n            \"transactionId\": \"pi_3Runt7KFHFhupEwe1C1dpULW\",\n            \"amount\": 5000,\n            \"currency\": \"SGD\",\n            \"status\": \"payment_successful\",\n            \"timestamp\": \"2025-08-11T05:03:38.000Z\",\n            \"source\": \"stripe\",\n            \"customerEmail\": \"customer_3@mail.com\",\n            \"createdAt\": \"2025-08-11T05:03:40.809Z\",\n            \"updatedAt\": \"2025-08-11T05:03:40.809Z\"\n        },\n        {\n            \"id\": \"06d65c70-4c17-4b13-bc5d-db801790674c\",\n            \"transactionId\": \"pi_3RunqaKFHFhupEwe1tj5qsET\",\n            \"amount\": 80,\n            \"currency\": \"USD\",\n            \"status\": \"payment_successful\",\n            \"timestamp\": \"2025-08-11T05:01:17.000Z\",\n            \"source\": \"stripe\",\n            \"customerEmail\": \"customer_2@mail.com\",\n            \"createdAt\": \"2025-08-11T05:01:19.599Z\",\n            \"updatedAt\": \"2025-08-11T05:01:19.599Z\"\n        },\n        {\n            \"id\": \"b73ec4c4-9d7d-4686-8616-a25b24e3f0a5\",\n            \"transactionId\": \"pi_3RunnqKFHFhupEwe0w7GD0hE\",\n            \"amount\": 50,\n            \"currency\": \"SGD\",\n            \"status\": \"payment_successful\",\n            \"timestamp\": \"2025-08-11T04:58:09.000Z\",\n            \"source\": \"stripe\",\n            \"customerEmail\": \"customer_1@mail.com\",\n            \"createdAt\": \"2025-08-11T04:58:11.580Z\",\n            \"updatedAt\": \"2025-08-11T04:58:11.580Z\"\n        }\n    ]\n}"
+						}
+					]
+				},
+				{
+					"name": "Get Successful Payments",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{access_token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/payments/successful",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"payments",
+								"successful"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Example Response",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer {{access_token}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{base_url}}/payments/successful",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"payments",
+										"successful"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": null,
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "2025"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"7e9-qX7m0fwNFzDwkzOJ4cTleHSt+l4\""
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 11 Aug 2025 05:42:50 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"payment_successful payments retrieved successfully\",\n    \"statusCode\": 200,\n    \"data\": [\n        {\n            \"id\": \"4058f7de-f234-45b8-9578-8b6eaa72a802\",\n            \"transactionId\": \"int_aaaat9w2hgh8mzi1111\",\n            \"amount\": 821.66,\n            \"currency\": \"USD\",\n            \"status\": \"payment_successful\",\n            \"timestamp\": \"2025-08-11T01:16:04.000Z\",\n            \"source\": \"airwallex\",\n            \"customerEmail\": null,\n            \"createdAt\": \"2025-08-11T05:14:51.934Z\",\n            \"updatedAt\": \"2025-08-11T05:14:51.934Z\"\n        },\n        {\n            \"id\": \"7e5095e5-30f8-40b5-8287-5de94c08ec21\",\n            \"transactionId\": \"pi_3Ruo0lKFHFhupEwe1yyHLlxT\",\n            \"amount\": 1350,\n            \"currency\": \"AUD\",\n            \"status\": \"payment_successful\",\n            \"timestamp\": \"2025-08-11T05:11:27.000Z\",\n            \"source\": \"stripe\",\n            \"customerEmail\": \"customer_5@mail.com\",\n            \"createdAt\": \"2025-08-11T05:11:29.264Z\",\n            \"updatedAt\": \"2025-08-11T05:11:29.264Z\"\n        },\n        {\n            \"id\": \"d8c42d38-4749-4afd-b526-2e45b9b9407d\",\n            \"transactionId\": \"pi_3RunxWKFHFhupEwe0UqmEzaN\",\n            \"amount\": 620,\n            \"currency\": \"USD\",\n            \"status\": \"payment_successful\",\n            \"timestamp\": \"2025-08-11T05:08:01.000Z\",\n            \"source\": \"stripe\",\n            \"customerEmail\": \"customer_2@mail.com\",\n            \"createdAt\": \"2025-08-11T05:08:03.391Z\",\n            \"updatedAt\": \"2025-08-11T05:08:03.391Z\"\n        },\n        {\n            \"id\": \"3d03fa16-e423-42e1-ac1a-c3ae0d98ca08\",\n            \"transactionId\": \"pi_3Runt7KFHFhupEwe1C1dpULW\",\n            \"amount\": 5000,\n            \"currency\": \"SGD\",\n            \"status\": \"payment_successful\",\n            \"timestamp\": \"2025-08-11T05:03:38.000Z\",\n            \"source\": \"stripe\",\n            \"customerEmail\": \"customer_3@mail.com\",\n            \"createdAt\": \"2025-08-11T05:03:40.809Z\",\n            \"updatedAt\": \"2025-08-11T05:03:40.809Z\"\n        },\n        {\n            \"id\": \"06d65c70-4c17-4b13-bc5d-db801790674c\",\n            \"transactionId\": \"pi_3RunqaKFHFhupEwe1tj5qsET\",\n            \"amount\": 80,\n            \"currency\": \"USD\",\n            \"status\": \"payment_successful\",\n            \"timestamp\": \"2025-08-11T05:01:17.000Z\",\n            \"source\": \"stripe\",\n            \"customerEmail\": \"customer_2@mail.com\",\n            \"createdAt\": \"2025-08-11T05:01:19.599Z\",\n            \"updatedAt\": \"2025-08-11T05:01:19.599Z\"\n        },\n        {\n            \"id\": \"b73ec4c4-9d7d-4686-8616-a25b24e3f0a5\",\n            \"transactionId\": \"pi_3RunnqKFHFhupEwe0w7GD0hE\",\n            \"amount\": 50,\n            \"currency\": \"SGD\",\n            \"status\": \"payment_successful\",\n            \"timestamp\": \"2025-08-11T04:58:09.000Z\",\n            \"source\": \"stripe\",\n            \"customerEmail\": \"customer_1@mail.com\",\n            \"createdAt\": \"2025-08-11T04:58:11.580Z\",\n            \"updatedAt\": \"2025-08-11T04:58:11.580Z\"\n        }\n    ]\n}"
+						}
+					]
+				},
+				{
+					"name": "Get Failed Payments",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{access_token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/payments/failed",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"payments",
+								"failed"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Example Response",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer {{access_token}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{base_url}}/payments/failed",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"payments",
+										"failed"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": null,
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "712"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"2c8-9oCl2qmy/BEkLh1HVfAh3igWlpQ\""
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 11 Aug 2025 05:43:03 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"payment_failed payments retrieved successfully\",\n    \"statusCode\": 200,\n    \"data\": [\n        {\n            \"id\": \"c109c590-d935-4b9f-b452-bdba89dba66e\",\n            \"transactionId\": \"int_aaaat9w2hgh8mzi5242\",\n            \"amount\": 16.66,\n            \"currency\": \"USD\",\n            \"status\": \"payment_failed\",\n            \"timestamp\": \"2025-08-11T02:16:04.000Z\",\n            \"source\": \"airwallex\",\n            \"customerEmail\": null,\n            \"createdAt\": \"2025-08-11T05:18:14.689Z\",\n            \"updatedAt\": \"2025-08-11T05:18:14.689Z\"\n        },\n        {\n            \"id\": \"faea26ec-496d-4694-bb2f-020895e5a491\",\n            \"transactionId\": \"pi_3RunyiKFHFhupEwe11Siwrh6\",\n            \"amount\": 750,\n            \"currency\": \"SGD\",\n            \"status\": \"payment_failed\",\n            \"timestamp\": \"2025-08-11T05:09:17.000Z\",\n            \"source\": \"stripe\",\n            \"customerEmail\": \"customer_1@mail.com\",\n            \"createdAt\": \"2025-08-11T05:09:19.245Z\",\n            \"updatedAt\": \"2025-08-11T05:09:19.245Z\"\n        }\n    ]\n}"
+						}
+					]
+				},
+				{
+					"name": "Get Refunds",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{access_token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/payments/refunds",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"payments",
+								"refunds"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Example Response",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer {{access_token}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{base_url}}/payments/refunds",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"payments",
+										"refunds"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": null,
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "412"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"19c-QBujrDQHoiN1C1QFUX7Pds6ztaQ\""
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 11 Aug 2025 05:43:13 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"refund_processed payments retrieved successfully\",\n    \"statusCode\": 200,\n    \"data\": [\n        {\n            \"id\": \"02629481-a584-43aa-bd2f-5bcdbf8f262a\",\n            \"transactionId\": \"pi_3RunurKFHFhupEwe0r3CcoOp\",\n            \"amount\": 1200,\n            \"currency\": \"EUR\",\n            \"status\": \"refund_processed\",\n            \"timestamp\": \"2025-08-11T05:06:08.000Z\",\n            \"source\": \"stripe\",\n            \"customerEmail\": \"customer_4@mail.com\",\n            \"createdAt\": \"2025-08-11T05:05:17.319Z\",\n            \"updatedAt\": \"2025-08-11T05:06:09.238Z\"\n        }\n    ]\n}"
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Ledgers",
+			"item": [
+				{
+					"name": "Get All Ledger Entries",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{access_token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/ledger",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"ledger"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Example Response",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer {{access_token}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{base_url}}/ledger",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"ledger"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": null,
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "3881"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"f29-7Z7oin7q55WiSCb3Q2vF2ACjt0o\""
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 11 Aug 2025 05:43:23 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"Ledger entries retrieved successfully\",\n    \"statusCode\": 200,\n    \"data\": [\n        {\n            \"id\": \"7a351607-fbf3-4fe7-9303-1871cc989951\",\n            \"paymentId\": \"c109c590-d935-4b9f-b452-bdba89dba66e\",\n            \"entryType\": \"PAYMENT\",\n            \"status\": \"FAILED\",\n            \"currency\": \"USD\",\n            \"credit\": 0,\n            \"debit\": 0,\n            \"conversionRate\": 1,\n            \"creditBase\": 0,\n            \"debitBase\": 0,\n            \"balanceAfterBase\": 6336.189,\n            \"description\": \"Failed payment from airwallex\",\n            \"timestamp\": \"2025-08-11T02:16:04.000Z\",\n            \"createdAt\": \"2025-08-11T05:18:14.694Z\"\n        },\n        {\n            \"id\": \"553a298a-edbc-48c3-912c-e617d2b30cb1\",\n            \"paymentId\": \"4058f7de-f234-45b8-9578-8b6eaa72a802\",\n            \"entryType\": \"PAYMENT\",\n            \"status\": \"SUCCESS\",\n            \"currency\": \"USD\",\n            \"credit\": 821.66,\n            \"debit\": 0,\n            \"conversionRate\": 1,\n            \"creditBase\": 821.66,\n            \"debitBase\": 0,\n            \"balanceAfterBase\": 6336.189,\n            \"description\": \"Payment from airwallex\",\n            \"timestamp\": \"2025-08-11T01:16:04.000Z\",\n            \"createdAt\": \"2025-08-11T05:14:51.939Z\"\n        },\n        {\n            \"id\": \"f68aeb9d-9a9c-4849-b68c-44005c99df13\",\n            \"paymentId\": \"7e5095e5-30f8-40b5-8287-5de94c08ec21\",\n            \"entryType\": \"PAYMENT\",\n            \"status\": \"SUCCESS\",\n            \"currency\": \"AUD\",\n            \"credit\": 1350,\n            \"debit\": 0,\n            \"conversionRate\": 0.65244,\n            \"creditBase\": 880.794,\n            \"debitBase\": 0,\n            \"balanceAfterBase\": 5514.529,\n            \"description\": \"Payment from stripe\",\n            \"timestamp\": \"2025-08-11T05:11:27.000Z\",\n            \"createdAt\": \"2025-08-11T05:11:30.548Z\"\n        },\n        {\n            \"id\": \"30a5ab73-c50b-419f-8089-c77182ee83ad\",\n            \"paymentId\": \"faea26ec-496d-4694-bb2f-020895e5a491\",\n            \"entryType\": \"PAYMENT\",\n            \"status\": \"FAILED\",\n            \"currency\": \"SGD\",\n            \"credit\": 0,\n            \"debit\": 0,\n            \"conversionRate\": 0.778955,\n            \"creditBase\": 0,\n            \"debitBase\": 0,\n            \"balanceAfterBase\": 4633.735,\n            \"description\": \"Failed payment from stripe\",\n            \"timestamp\": \"2025-08-11T05:09:17.000Z\",\n            \"createdAt\": \"2025-08-11T05:09:20.689Z\"\n        },\n        {\n            \"id\": \"63d14616-ce97-4797-9909-faea20428b35\",\n            \"paymentId\": \"d8c42d38-4749-4afd-b526-2e45b9b9407d\",\n            \"entryType\": \"PAYMENT\",\n            \"status\": \"SUCCESS\",\n            \"currency\": \"USD\",\n            \"credit\": 620,\n            \"debit\": 0,\n            \"conversionRate\": 1,\n            \"creditBase\": 620,\n            \"debitBase\": 0,\n            \"balanceAfterBase\": 4633.735,\n            \"description\": \"Payment from stripe\",\n            \"timestamp\": \"2025-08-11T05:08:01.000Z\",\n            \"createdAt\": \"2025-08-11T05:08:03.395Z\"\n        },\n        {\n            \"id\": \"85b93096-9b49-4789-b4fb-c6efdde9c1dc\",\n            \"paymentId\": \"02629481-a584-43aa-bd2f-5bcdbf8f262a\",\n            \"entryType\": \"REFUND\",\n            \"status\": \"SUCCESS\",\n            \"currency\": \"EUR\",\n            \"credit\": 0,\n            \"debit\": 1200,\n            \"conversionRate\": 1.167211,\n            \"creditBase\": 0,\n            \"debitBase\": 1400.653,\n            \"balanceAfterBase\": 4013.735,\n            \"description\": \"Refund for transaction pi_3RunurKFHFhupEwe0r3CcoOp\",\n            \"timestamp\": \"2025-08-11T05:06:08.000Z\",\n            \"createdAt\": \"2025-08-11T05:06:10.060Z\"\n        },\n        {\n            \"id\": \"dc2d7149-80af-4bbc-9a0d-96ae234ce3f7\",\n            \"paymentId\": \"02629481-a584-43aa-bd2f-5bcdbf8f262a\",\n            \"entryType\": \"PAYMENT\",\n            \"status\": \"SUCCESS\",\n            \"currency\": \"EUR\",\n            \"credit\": 1200,\n            \"debit\": 0,\n            \"conversionRate\": 1.167211,\n            \"creditBase\": 1400.653,\n            \"debitBase\": 0,\n            \"balanceAfterBase\": 5414.388,\n            \"description\": \"Payment from stripe\",\n            \"timestamp\": \"2025-08-11T05:05:15.000Z\",\n            \"createdAt\": \"2025-08-11T05:05:18.320Z\"\n        },\n        {\n            \"id\": \"840f715c-78be-4b35-b80b-178734dd3455\",\n            \"paymentId\": \"3d03fa16-e423-42e1-ac1a-c3ae0d98ca08\",\n            \"entryType\": \"PAYMENT\",\n            \"status\": \"SUCCESS\",\n            \"currency\": \"SGD\",\n            \"credit\": 5000,\n            \"debit\": 0,\n            \"conversionRate\": 0.778955,\n            \"creditBase\": 3894.775,\n            \"debitBase\": 0,\n            \"balanceAfterBase\": 4013.735,\n            \"description\": \"Payment from stripe\",\n            \"timestamp\": \"2025-08-11T05:03:38.000Z\",\n            \"createdAt\": \"2025-08-11T05:03:41.914Z\"\n        },\n        {\n            \"id\": \"192426b9-c4f6-4c0f-96ac-f59baf248bab\",\n            \"paymentId\": \"06d65c70-4c17-4b13-bc5d-db801790674c\",\n            \"entryType\": \"PAYMENT\",\n            \"status\": \"SUCCESS\",\n            \"currency\": \"USD\",\n            \"credit\": 80,\n            \"debit\": 0,\n            \"conversionRate\": 1,\n            \"creditBase\": 80,\n            \"debitBase\": 0,\n            \"balanceAfterBase\": 118.96,\n            \"description\": \"Payment from stripe\",\n            \"timestamp\": \"2025-08-11T05:01:17.000Z\",\n            \"createdAt\": \"2025-08-11T05:01:19.605Z\"\n        },\n        {\n            \"id\": \"71e8035e-2df8-4214-92fc-a364da158e3c\",\n            \"paymentId\": \"b73ec4c4-9d7d-4686-8616-a25b24e3f0a5\",\n            \"entryType\": \"PAYMENT\",\n            \"status\": \"SUCCESS\",\n            \"currency\": \"SGD\",\n            \"credit\": 50,\n            \"debit\": 0,\n            \"conversionRate\": 0.779205,\n            \"creditBase\": 38.96,\n            \"debitBase\": 0,\n            \"balanceAfterBase\": 38.96,\n            \"description\": \"Payment from stripe\",\n            \"timestamp\": \"2025-08-11T04:58:09.000Z\",\n            \"createdAt\": \"2025-08-11T04:58:12.946Z\"\n        }\n    ]\n}"
+						}
+					]
+				},
+				{
+					"name": "Get Current Balance",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{access_token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/ledger/balance",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"ledger",
+								"balance"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Example Response",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer {{access_token}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{base_url}}/ledger/balance",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"ledger",
+										"balance"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": null,
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "114"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"72-6BlmTiIUMAgQp5omyINrKgICHIM\""
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 11 Aug 2025 05:43:42 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"Current balance retrieved successfully\",\n    \"statusCode\": 200,\n    \"data\": {\n        \"balance\": 5514.529,\n        \"currency\": \"USD\"\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "Get Ledger by Payment ID",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{access_token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/ledger/payment/:paymentId",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"ledger",
+								"payment",
+								":paymentId"
+							],
+							"variable": [
+								{
+									"key": "paymentId",
+									"value": "your-payment-id-here",
+									"description": "Replace with actual payment ID"
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Example Response",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer {{access_token}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{base_url}}/ledger/payment/:paymentId",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"ledger",
+										"payment",
+										":paymentId"
+									],
+									"variable": [
+										{
+											"key": "paymentId",
+											"value": "c109c590-d935-4b9f-b452-bdba89dba66e",
+											"description": "Replace with actual payment ID"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": null,
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "501"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"1f5-S/sRydc668lbqpLTH56VTgPpUzA\""
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 11 Aug 2025 05:44:28 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"Ledger entries for payment c109c590-d935-4b9f-b452-bdba89dba66e retrieved successfully\",\n    \"statusCode\": 200,\n    \"data\": [\n        {\n            \"id\": \"7a351607-fbf3-4fe7-9303-1871cc989951\",\n            \"paymentId\": \"c109c590-d935-4b9f-b452-bdba89dba66e\",\n            \"entryType\": \"PAYMENT\",\n            \"status\": \"FAILED\",\n            \"currency\": \"USD\",\n            \"credit\": 0,\n            \"debit\": 0,\n            \"conversionRate\": 1,\n            \"creditBase\": 0,\n            \"debitBase\": 0,\n            \"balanceAfterBase\": 6336.189,\n            \"description\": \"Failed payment from airwallex\",\n            \"timestamp\": \"2025-08-11T02:16:04.000Z\",\n            \"createdAt\": \"2025-08-11T05:18:14.694Z\"\n        }\n    ]\n}"
+						}
+					]
+				},
+				{
+					"name": "Get Ledger by Currency",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{access_token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/ledger/currency/:currency",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"ledger",
+								"currency",
+								":currency"
+							],
+							"variable": [
+								{
+									"key": "currency",
+									"value": "USD",
+									"description": "Currency code (e.g., USD, EUR, SGD)"
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Example Response",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer {{access_token}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{base_url}}/ledger/currency/:currency",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"ledger",
+										"currency",
+										":currency"
+									],
+									"variable": [
+										{
+											"key": "currency",
+											"value": "USD",
+											"description": "Currency code (e.g., USD, EUR, SGD)"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": null,
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "1584"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"630-sMcugl30h3eL/rWQcpfY45m51RM\""
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 11 Aug 2025 05:44:59 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"Ledger entries for currency USD retrieved successfully\",\n    \"statusCode\": 200,\n    \"data\": [\n        {\n            \"id\": \"7a351607-fbf3-4fe7-9303-1871cc989951\",\n            \"paymentId\": \"c109c590-d935-4b9f-b452-bdba89dba66e\",\n            \"entryType\": \"PAYMENT\",\n            \"status\": \"FAILED\",\n            \"currency\": \"USD\",\n            \"credit\": 0,\n            \"debit\": 0,\n            \"conversionRate\": 1,\n            \"creditBase\": 0,\n            \"debitBase\": 0,\n            \"balanceAfterBase\": 6336.189,\n            \"description\": \"Failed payment from airwallex\",\n            \"timestamp\": \"2025-08-11T02:16:04.000Z\",\n            \"createdAt\": \"2025-08-11T05:18:14.694Z\"\n        },\n        {\n            \"id\": \"553a298a-edbc-48c3-912c-e617d2b30cb1\",\n            \"paymentId\": \"4058f7de-f234-45b8-9578-8b6eaa72a802\",\n            \"entryType\": \"PAYMENT\",\n            \"status\": \"SUCCESS\",\n            \"currency\": \"USD\",\n            \"credit\": 821.66,\n            \"debit\": 0,\n            \"conversionRate\": 1,\n            \"creditBase\": 821.66,\n            \"debitBase\": 0,\n            \"balanceAfterBase\": 6336.189,\n            \"description\": \"Payment from airwallex\",\n            \"timestamp\": \"2025-08-11T01:16:04.000Z\",\n            \"createdAt\": \"2025-08-11T05:14:51.939Z\"\n        },\n        {\n            \"id\": \"63d14616-ce97-4797-9909-faea20428b35\",\n            \"paymentId\": \"d8c42d38-4749-4afd-b526-2e45b9b9407d\",\n            \"entryType\": \"PAYMENT\",\n            \"status\": \"SUCCESS\",\n            \"currency\": \"USD\",\n            \"credit\": 620,\n            \"debit\": 0,\n            \"conversionRate\": 1,\n            \"creditBase\": 620,\n            \"debitBase\": 0,\n            \"balanceAfterBase\": 4633.735,\n            \"description\": \"Payment from stripe\",\n            \"timestamp\": \"2025-08-11T05:08:01.000Z\",\n            \"createdAt\": \"2025-08-11T05:08:03.395Z\"\n        },\n        {\n            \"id\": \"192426b9-c4f6-4c0f-96ac-f59baf248bab\",\n            \"paymentId\": \"06d65c70-4c17-4b13-bc5d-db801790674c\",\n            \"entryType\": \"PAYMENT\",\n            \"status\": \"SUCCESS\",\n            \"currency\": \"USD\",\n            \"credit\": 80,\n            \"debit\": 0,\n            \"conversionRate\": 1,\n            \"creditBase\": 80,\n            \"debitBase\": 0,\n            \"balanceAfterBase\": 118.96,\n            \"description\": \"Payment from stripe\",\n            \"timestamp\": \"2025-08-11T05:01:17.000Z\",\n            \"createdAt\": \"2025-08-11T05:01:19.605Z\"\n        }\n    ]\n}"
+						}
+					]
+				}
+			]
+		}
+	],
+	"variable": [
+		{
+			"key": "base_url",
+			"value": "http://localhost:3000",
+			"type": "string"
+		},
+		{
+			"key": "access_token",
+			"value": "",
+			"type": "string"
+		}
+	]
+}
